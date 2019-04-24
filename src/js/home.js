@@ -49,3 +49,35 @@ Promise.all([
   .catch(function(message){
     console.log(message)
   })
+
+
+
+//Una de las características mas solicitadas al momento de desarrollar una app dinámica en javaScript es que tu puedas
+//pedir nuevos datos a un servidor o algún servicio al cual denominamos API y normalmente para hacer esto se utiliza
+//una técnica llamada AJAX
+//ABAJO ESTÁ UNOS EJEMPLOS EN JQUERY Y JS VANILA
+
+//Esto de aca abajo es el Jquery ajax, es decir un XMLHttpsRequest que sirve para pedir datos a un servicio externo
+$.ajax('https://randomuser.me/api/dededede',{
+  method: 'GET',
+  //success solo se realizará si todo sale correcto
+  success: function(data){
+    console.log(data)
+  },
+  error: function(error){
+    console.log(error)
+  }
+})
+
+//Js vanila
+fetch('https://randomuser.me/api/')
+  .then(function(response){
+    //console.log(response)
+    return response.json()
+  })
+  .then(function(user){
+    console.log('user', user.results[0].name.first)
+  })
+  .catch(function(){
+    console.log('algo falló')
+  })
